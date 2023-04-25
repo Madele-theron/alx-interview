@@ -18,7 +18,7 @@ def pascal_triangle(n):
         next_row = [1] * (row + 1)
         for col in range(1, row):
             next_row[col] = triangle[row - 1][col - 1] \
-            + triangle[row - 1][col]
+                + triangle[row - 1][col]
         triangle.append(next_row)
 
     return triangle
