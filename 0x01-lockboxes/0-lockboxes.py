@@ -14,7 +14,7 @@ def canUnlockAll(boxes):
             boxes_unlocked.append(current_position)
 
             if not box:
-                print("box is empty, no keys found")
+                continue
             # maybe I can add a else if current_position !== 0
             # && current_position in key_list:...
             else:
