@@ -2,52 +2,50 @@
 """A method to determine if all the boxes can be opened"""
 
 
+def get_keys(main_list, indices):
+    """
+    Flattens a list of lists by extracting the elements of the
+    sublists specified by the given indices.
+    Gets the keys of the specified boxes.
+
+    Args:
+        main_list (list): A list of lists to be flattened. -> boxes
+        indices (list): A list of indices to be used to access the
+        sublists in the first argument.
+
+    Returns:
+        list: A flattened list containing the elements of the sublists
+        specified by the given indices.
+    """
+    keys = []
+    for i in indices:
+        keys += main_list[i]
+    return keys
+
+
 def canUnlockAll(boxes):
-    """A Function that will return True if all boxes are unlocked"""
-    key_list = []
-    still_locked = []
-    boxes_unlocked = []
+    """
+    Determines whether all the boxes in a list can be unlocked.
 
-    for box in boxes:
-        current_position = boxes.index(box)
-        if current_position == 0:
-            boxes_unlocked.append(current_position)
+    Args:
+        boxes (list): A list of lists, where each sublist represents the
+        list of keys required to open a box.
 
-            if not box:
-                continue
-            # maybe I can add a else if current_position !== 0
-            # && current_position in key_list:...
-            else:
-                keys_in_box = []
-                for key in box:
-                    keys_in_box.append(key)
-                    key_list.append(key)
-        else:
-            if current_position in key_list:
-                if current_position not in boxes_unlocked:
-                    boxes_unlocked.append(current_position)
-                keys_in_box = []
-                for key in box:
-                    keys_in_box.append(key)
-                    key_list.append(key)
-            else:
-                still_locked.append(current_position)
-    if not still_locked:
-        return True
-    else:
-        for box in list(still_locked):
-            if box in key_list:
-                keys_in_box = []
-                for key in boxes[box]:
-                    keys_in_box.append(key)
-                    key_list.append(key)
-                if box not in boxes_unlocked:
-                    boxes_unlocked.append(box)
-                still_locked.remove(box)
-        if not still_locked:
-            return True
+    Returns:
+        bool: True if all the boxes can be unlocked, False otherwise.
+    """
+    index = 0
+    saved_keys = list(set(boxes[0]) | {0})
+    new_keys_added = True
 
-        return False
+    while new_keys_added:
+        new_keys_added = False
+        for j in get_keys(boxes, saved_keys[index:]):
+            if j not in saved_keys:
+                saved_keys.append(j)
+                index += 1
+                new_keys_added = True
+    return len(saved_keys) == len(boxes)
 
 
 boxes = [[1], [2], [3], [4], []]
