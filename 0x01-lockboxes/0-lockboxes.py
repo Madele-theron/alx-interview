@@ -4,66 +4,50 @@
 
 def canUnlockAll(boxes):
     """A Function that will return True if all boxes are unlocked"""
-    keyList = []
-    stillLocked = []
-    boxesUnlocked = []
+    key_list = []
+    still_locked = []
+    boxes_unlocked = []
 
     for box in boxes:
-        currentPosition = boxes.index(box)
-        if currentPosition == 0:
-            boxesUnlocked.append(currentPosition)
+        current_position = boxes.index(box)
+        if current_position == 0:
+            boxes_unlocked.append(current_position)
 
             if not box:
                 print("box is empty, no keys found")
-            # maybe I can add a else if currentPosition !== 0
-            # && currentPosition in keyList:...
+            # maybe I can add a else if current_position !== 0
+            # && current_position in key_list:...
             else:
-                keysInBox = []
+                keys_in_box = []
                 for key in box:
-                    print("key:", key)
-                    keysInBox.append(key)
-                    keyList.append(key)
-                print(f"boxes[{currentPosition}] -> {keysInBox}")
+                    keys_in_box.append(key)
+                    key_list.append(key)
         else:
-            if currentPosition in keyList:
-                if currentPosition not in boxesUnlocked:
-                    boxesUnlocked.append(currentPosition)
-                keysInBox = []
+            if current_position in key_list:
+                if current_position not in boxes_unlocked:
+                    boxes_unlocked.append(current_position)
+                keys_in_box = []
                 for key in box:
-                    print("key:", key)
-                    keysInBox.append(key)
-                    keyList.append(key)
-                print(f"boxes[{currentPosition}] -> {keysInBox}")
+                    keys_in_box.append(key)
+                    key_list.append(key)
             else:
-                print(f"box[{currentPosition}] is locked, we don't have a key")
-                stillLocked.append(currentPosition)
-    if not stillLocked:
-        print("we've unlocked all the boxes")
+                still_locked.append(current_position)
+    if not still_locked:
+
         return "YAY"
     else:
-        print(f"boxes that are still locked: {stillLocked}")
-        print(f"saved keys: {keyList}")
-        for box in list(stillLocked):
-            print("current box:", box)
-            if box in keyList:
-                keysInBox = []
+        for box in list(still_locked):
+            if box in key_list:
+                keys_in_box = []
                 for key in boxes[box]:
-                    keysInBox.append(key)
-                    keyList.append(key)
-                print(f"boxes[{box}] -> {keysInBox}")
-                print(f"saved keys: {keyList}")
-                if box not in boxesUnlocked:
-                    boxesUnlocked.append(box)
-                stillLocked.remove(box)
-                print(f"boxes still locked {stillLocked}, removed box {box}")
-                print(f"boxes unlocked: {sorted(boxesUnlocked)}")
-                print(f"boxes that are still locked: {stillLocked}")
-            print("current box:", box)
-        print("current box:", box)
-        print("still locked:", stillLocked)
-        if not stillLocked:
+                    keys_in_box.append(key)
+                    key_list.append(key)
+                if box not in boxes_unlocked:
+                    boxes_unlocked.append(box)
+                still_locked.remove(box)
+        if not still_locked:
             return True
-        print("THESE BOXES ARE STILL LOCKED", stillLocked)
+
         return False
 
 
