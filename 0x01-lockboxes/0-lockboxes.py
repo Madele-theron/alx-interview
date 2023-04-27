@@ -46,13 +46,3 @@ def canUnlockAll(boxes):
                 index += 1
                 new_keys_added = True
     return len(saved_keys) == len(boxes)
-
-
-boxes = [[1], [2], [3], [4], []]
-print(canUnlockAll(boxes))
-
-boxes = [[1, 4, 6], [2], [0, 4, 1], [5, 6, 2], [3], [4, 1], [6]]
-print(canUnlockAll(boxes))
-
-boxes = [[1, 4], [2], [0, 4, 1], [3], [], [4, 1], [5, 6]]
-print(canUnlockAll(boxes))
