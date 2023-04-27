@@ -33,8 +33,7 @@ def canUnlockAll(boxes):
             else:
                 still_locked.append(current_position)
     if not still_locked:
-
-        return "YAY"
+        return True
     else:
         for box in list(still_locked):
             if box in key_list:
