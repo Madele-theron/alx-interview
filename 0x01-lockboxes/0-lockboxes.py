@@ -46,3 +46,7 @@ def canUnlockAll(boxes):
                 index += 1
                 new_keys_added = True
     return len(saved_keys) == len(boxes)
+
+
+boxes = [[1], [2, 6], [4], [], [5], [3], []]
+print(canUnlockAll(boxes))
