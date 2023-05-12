@@ -33,7 +33,7 @@ try:
 
         # Update metrics
         total_size += file_size
-        status_codes[code] += 1
+        status_codes[status_code] += 1
         count += 1
 
         # Check if we have processed 10 lines
