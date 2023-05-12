@@ -6,40 +6,41 @@ import re
 if __name__ == "__main__":
 
     total_size = 0
-    status_codes = {}
+    status_codes = {
+        200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0
+        }
+    count = 0
 
     def print_metrics():
         """computes & prints metrics"""
-        print(f"File size: {total_size}")
-        for code, count in sorted(status_codes.items()):
-            print("{}: {}".format(code, count))
+        print("File size: {}".format(total_size))
+    for code in sorted(status_codes.keys()):
+        if status_codes[code] > 0:
+            print("{}: {}".format(code, status_codes[code]))
 
-    try:
-        for line in sys.stdin:
-            # Validate the input format
-            if not re.match(
-                r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} - \[[^\]]*\] '
-                r'"GET \/projects\/260 HTTP\/1\.1" \d{3} \d*$', line
-            ):
+# Read lines from stdin
+try:
+    for line in sys.stdin:
+        # Split line into components
+        try:
+            ip_address, _, _, date, _, request, status_code, file_size = line.split()
+            if request != "GET /projects/260 HTTP/1.1":
                 continue
+            status_code = int(status_code)
+            file_size = int(file_size)
+        except ValueError:
+            continue
 
-            # Get status codes and file sizes
-            match = re.search(r' (\d{3}) (\d+)$', line)
-            status_code = match.group(1)
-            file_size = int(match.group(2))
+        # Update metrics
+        total_size += file_size
+        status_codes[code] += 1
+        count += 1
 
-            total_size += file_size
+        # Check if we have processed 10 lines
+        if len(status_codes) % 10 == 0:
+            # Print the metrics
+            print_metrics()
 
-            # Update status code dict
-            if status_code in status_codes:
-                status_codes[status_code] += 1
-            else:
-                status_codes[status_code] = 1
-
-            # Check if we have processed 10 lines
-            if len(status_codes) % 10 == 0:
-                # Print the metrics
-                print_metrics()
-    except KeyboardInterrupt:
-        # Print the metrics
-        print_metrics()
+except KeyboardInterrupt:
+    # Print the metrics
+    print_metrics()
