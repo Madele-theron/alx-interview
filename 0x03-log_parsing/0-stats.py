@@ -14,9 +14,9 @@ if __name__ == "__main__":
     def print_metrics():
         """computes & prints metrics"""
         print("File size: {}".format(total_size))
-    for code in sorted(status_codes.keys()):
-        if status_codes[code] > 0:
-            print("{}: {}".format(code, status_codes[code]))
+        for code in sorted(status_codes.keys()):
+            if status_codes[code] > 0:
+                print("{}: {}".format(code, status_codes[code]))
 
 # Read lines from stdin
 try:
