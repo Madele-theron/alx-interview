@@ -17,7 +17,10 @@ if __name__ == "__main__":
     try:
         for line in sys.stdin:
             # Validate the input format
-            if not re.match(r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} - \[[^\]]*\] "GET \/projects\/260 HTTP\/1\.1" \d{3} \d*$', line):
+            if not re.match(
+                r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} - \[[^\]]*\] '
+                r'"GET \/projects\/260 HTTP\/1\.1" \d{3} \d*$', line
+            ):
                 continue
 
             # Get status codes and file sizes
