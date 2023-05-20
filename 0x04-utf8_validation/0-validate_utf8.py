@@ -5,7 +5,7 @@ set represents a valid UTF-8 encoding.
 """
 
 
-def validUTF8(data):
+def validUTF8(data: list) -> bool:
     """
     A method that determines if given data set represents
     a valid UTF-8 encoding.
