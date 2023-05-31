@@ -14,3 +14,4 @@ def nqueens(n: int):
     Return:
         
     """
+    
