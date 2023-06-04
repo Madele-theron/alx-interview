@@ -2,7 +2,7 @@
 /* Script that prints all characters of a Star Wars movie */
 
 const request = require('request');
-const url = 'https://swapi-api.alx-tools.com/api/films/';
+const url = 'https://swapi-api.hbtn.io/api/films/';
 const filmId = process.argv[2];
 
 // if (filmId === undefined) {
