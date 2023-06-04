@@ -5,10 +5,6 @@ const request = require('request');
 const url = 'https://swapi-api.alx-tools.com/api/films/';
 const filmId = process.argv[2];
 
-// if (filmId === undefined) {
-//   exit();
-// }
-
 // Query the api
 request(url + filmId, (error, response, body) => {
   if (!error) {
@@ -30,4 +26,4 @@ const printPeople = (people, i) => {
       console.log('error', error);
     }
   });
-}
+};
