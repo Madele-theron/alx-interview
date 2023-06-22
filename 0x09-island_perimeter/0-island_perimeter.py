@@ -11,13 +11,13 @@ def island_perimeter(grid):
     """
     if grid is None:
         return 0
-    
+
     row = len(grid)
     column = len(grid[0])
     assert (1 <= row and column <= 100), "length must be between 1 an 100"
 
     perimeter_total = 0
-    
+
     # search for 1's
     for i in range(row):
         for j in range(column):
