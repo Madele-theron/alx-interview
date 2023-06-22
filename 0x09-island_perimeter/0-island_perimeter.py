@@ -13,17 +13,21 @@ def island_perimeter(grid):
     if grid is None:
         return 0
 
+    row = len(grid)
+    column = len(grid[0])
+    assert (1 <= row and column <= 100), "length must be between 1 an 100"
+
     perimeter_total = 0
-    # step 1
-    for i in range(len(grid)):
-        print("i", i)
-        for j in range(len(grid[0])):
+
+    # search for 1's
+    for i in range(row):
+        for j in range(column):
             if grid[i][j] == 1:
                 perimeter_total += count_perimeter(grid, i, j)
     return perimeter_total
 
 
-def count_perimeter(grid, i, j):
+def count_perimeter(grid, row, column):
     """increase the counter if it's a 0 or out of bound
 
     Args:
@@ -31,13 +35,17 @@ def count_perimeter(grid, i, j):
         row (list):the row of the grid
         column (int):the column of the grid
     """
-    count = 0
-    if j - 1 < 0 or grid[i][j - 1] == 0:
-        count += 1
-    if j + 1 >= len(grid[0]) or grid[i][j + 1] == 0:
-        count += 1
-    if i - 1 < 0 or grid[i - 1][j] == 0:
-        count += 1
-    if i + 1 >= len(grid) or grid[i + 1][j] == 0:
-        count += 1
-    return count
+    counter = 0
+    # top
+    if row + 1 >= len(grid) or grid[row + 1][column] == 0:
+        counter += 1
+    # right
+    if column + 1 >= len(grid[0]) or grid[row][column + 1] == 0:
+        counter += 1
+    # bottom
+    if row - 1 < 0 or grid[row - 1][column] == 0:
+        counter += 1
+    # left
+    if column - 1 < 0 or grid[row][column - 1] == 0:
+        counter += 1
+    return counter
