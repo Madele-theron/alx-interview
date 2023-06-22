@@ -48,14 +48,3 @@ def count_perimeter(grid, row, column):
     if column - 1 < 0 or grid[row][column - 1] == 0:
         counter += 1
     return counter
-
-
-
-grid = [
-        [0, 0, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0],
-        [0, 1, 1, 1, 0, 0],
-        [0, 0, 0, 0, 0, 0]
-    ]
-print(island_perimeter(grid))
