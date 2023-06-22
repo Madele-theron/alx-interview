@@ -2,11 +2,12 @@
 """island perimeter interview question
 """
 
+
 def island_perimeter(grid):
     """Algorithm for determining the perimeter of an island grid
 
     Args:
-        grid list: the list of 0s and 1s 
+        grid list: the list of 0s and 1s
         that represent water (0) or island (1)
     """
     if grid is None:
@@ -42,7 +43,7 @@ def count_perimeter(grid, row, column):
     if column + 1 >= len(grid) or grid[row][column + 1] == 0:
         counter += 1
     # bottom
-    if row - 1 < 0 or grid[row -1][column] == 0:
+    if row - 1 < 0 or grid[row - 1][column] == 0:
         counter += 1
     # left
     if column - 1 < 0 or grid[row][column - 1] == 0:
