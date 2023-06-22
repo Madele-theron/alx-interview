@@ -21,9 +21,9 @@ def island_perimeter(grid):
     # search for 1's
     for i in range(row):
         for j in range(column):
-            if j == 1:
+            if grid[i][j] == 1:
                 perimeter_total += count_perimeter(grid, i, j)
-    return perimeter_total - 1
+    return perimeter_total
 
 
 def count_perimeter(grid, row, column):
